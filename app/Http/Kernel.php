@@ -19,6 +19,8 @@ class Kernel extends HttpKernel
      
         \App\Http\Middleware\PreventRequestsDuringMaintenance::class,
         \Illuminate\Foundation\Http\Middleware\ValidatePostSize::class,
+        // Registré este middleware para que mis peticiones PUT con form-data e imágenes desde Postman sí sean leídas por Laravel
+        \App\Http\Middleware\ParseMultipartFormData::class,
         \App\Http\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
     ];

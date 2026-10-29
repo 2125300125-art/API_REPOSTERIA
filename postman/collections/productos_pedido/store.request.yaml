@@ -1,0 +1,47 @@
+$kind: http-request
+url: 'http://localhost:8000/api/productos_pedido'
+method: POST
+headers:
+  - key: Accept
+    value: application/json
+    disabled: false
+    description: ""
+body:
+  type: formdata
+  content:
+    - type: text
+      key: pedido_id
+      value: '1'
+      disabled: false
+      description: ''
+    - type: text
+      key: producto_id
+      value: '1'
+      disabled: false
+      description: ''
+    - type: text
+      key: cantidad
+      value: '4'
+      disabled: false
+      description: ''
+    - type: text
+      key: precio
+      value: '48.00'
+      disabled: false
+      description: ''
+    - type: text
+      key: descuento
+      value: '0.00'
+      disabled: false
+      description: ''
+    - type: text
+      key: estado
+      value: '1'
+      disabled: false
+      description: ''
+    - type: file
+      key: imagen
+      src: []
+      disabled: true
+      description: 'Imagen opcional (marcar casilla y elegir archivo)'
+order: 3000

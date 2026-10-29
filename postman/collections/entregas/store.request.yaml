@@ -1,0 +1,47 @@
+$kind: http-request
+url: 'http://localhost:8000/api/entregas'
+method: POST
+headers:
+  - key: Accept
+    value: application/json
+    disabled: false
+    description: ""
+body:
+  type: formdata
+  content:
+    - type: text
+      key: pedido_id
+      value: '1'
+      disabled: false
+      description: ''
+    - type: text
+      key: repartidor_id
+      value: '1'
+      disabled: false
+      description: ''
+    - type: text
+      key: direccion_id
+      value: '1'
+      disabled: false
+      description: ''
+    - type: text
+      key: fecha
+      value: '2026-10-27'
+      disabled: false
+      description: ''
+    - type: text
+      key: hora
+      value: '11:30'
+      disabled: false
+      description: ''
+    - type: text
+      key: estado
+      value: '1'
+      disabled: false
+      description: ''
+    - type: file
+      key: imagen
+      src: []
+      disabled: true
+      description: 'Imagen opcional (marcar casilla y elegir archivo)'
+order: 3000

@@ -1,0 +1,57 @@
+$kind: http-request
+url: 'http://localhost:8000/api/direcciones'
+method: POST
+headers:
+  - key: Accept
+    value: application/json
+    disabled: false
+    description: ""
+body:
+  type: formdata
+  content:
+    - type: text
+      key: cliente_id
+      value: '1'
+      disabled: false
+      description: ''
+    - type: text
+      key: calle
+      value: 'Av. Juárez'
+      disabled: false
+      description: ''
+    - type: text
+      key: numero
+      value: '245'
+      disabled: false
+      description: ''
+    - type: text
+      key: colonia
+      value: 'La Paz'
+      disabled: false
+      description: ''
+    - type: text
+      key: ciudad
+      value: 'Puebla'
+      disabled: false
+      description: ''
+    - type: text
+      key: codigo_postal
+      value: '72160'
+      disabled: false
+      description: ''
+    - type: text
+      key: referencia
+      value: 'Portón azul junto a la farmacia'
+      disabled: false
+      description: ''
+    - type: text
+      key: estado
+      value: '1'
+      disabled: false
+      description: ''
+    - type: file
+      key: imagen
+      src: []
+      disabled: true
+      description: 'Imagen opcional (marcar casilla y elegir archivo)'
+order: 3000

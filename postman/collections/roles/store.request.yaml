@@ -1,0 +1,27 @@
+$kind: http-request
+url: 'http://localhost:8000/api/roles'
+method: POST
+headers:
+  - key: Accept
+    value: application/json
+    disabled: false
+    description: ""
+body:
+  type: formdata
+  content:
+    - type: text
+      key: nombre
+      value: 'Supervisor de Planta {{$randomInt}}'
+      disabled: false
+      description: ''
+    - type: text
+      key: estado
+      value: '1'
+      disabled: false
+      description: ''
+    - type: file
+      key: imagen
+      src: []
+      disabled: true
+      description: 'Imagen opcional (marcar casilla y elegir archivo)'
+order: 3000

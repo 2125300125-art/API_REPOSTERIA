@@ -1,0 +1,14 @@
+$kind: http-request
+url: 'http://localhost:8000/api/logout'
+method: POST
+headers:
+  - key: Accept
+    value: application/json
+    disabled: false
+    description: ""
+  - key: Authorization
+    value: 'Bearer PEGA_AQUI_TU_TOKEN'
+    disabled: false
+    description: 'Token devuelto por POST /api/login para revocarlo'
+order: 3000
+

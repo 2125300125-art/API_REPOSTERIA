@@ -1,0 +1,9 @@
+$kind: http-request
+url: 'http://localhost:8000/api/presentaciones/1'
+method: GET
+headers:
+  - key: Accept
+    value: application/json
+    disabled: false
+    description: ""
+order: 2000

@@ -1,0 +1,52 @@
+$kind: http-request
+url: 'http://localhost:8000/api/pedidos'
+method: POST
+headers:
+  - key: Accept
+    value: application/json
+    disabled: false
+    description: ""
+body:
+  type: formdata
+  content:
+    - type: text
+      key: cliente_id
+      value: '1'
+      disabled: false
+      description: ''
+    - type: text
+      key: metodo_pago_id
+      value: '1'
+      disabled: false
+      description: ''
+    - type: text
+      key: fecha
+      value: '2026-10-27'
+      disabled: false
+      description: ''
+    - type: text
+      key: total
+      value: '192.00'
+      disabled: false
+      description: ''
+    - type: text
+      key: iva
+      value: '30.72'
+      disabled: false
+      description: ''
+    - type: text
+      key: descuento
+      value: '0.00'
+      disabled: false
+      description: ''
+    - type: text
+      key: estado
+      value: '1'
+      disabled: false
+      description: ''
+    - type: file
+      key: imagen
+      src: []
+      disabled: true
+      description: 'Imagen opcional (marcar casilla y elegir archivo)'
+order: 3000

@@ -1,0 +1,9 @@
+$kind: http-request
+url: 'http://localhost:8000/api/productos/1'
+method: DELETE
+headers:
+  - key: Accept
+    value: application/json
+    disabled: false
+    description: ""
+order: 5000

@@ -1,0 +1,72 @@
+$kind: http-request
+url: 'http://localhost:8000/api/productos/1'
+method: PUT
+headers:
+  - key: Accept
+    value: application/json
+    disabled: false
+    description: ""
+body:
+  type: formdata
+  content:
+    - type: text
+      key: nombre
+      value: 'Garrafón Bonafont 20 L'
+      disabled: false
+      description: ''
+    - type: text
+      key: descripcion
+      value: 'Agua ligera de manantial en garrafón retornable de 20 litros'
+      disabled: false
+      description: ''
+    - type: text
+      key: categoria_id
+      value: '1'
+      disabled: false
+      description: ''
+    - type: text
+      key: presentacion_id
+      value: '1'
+      disabled: false
+      description: ''
+    - type: text
+      key: marca_id
+      value: '1'
+      disabled: false
+      description: ''
+    - type: text
+      key: precio
+      value: '48.00'
+      disabled: false
+      description: ''
+    - type: text
+      key: existencia
+      value: '60'
+      disabled: false
+      description: ''
+    - type: text
+      key: descuento
+      value: '0.00'
+      disabled: false
+      description: ''
+    - type: text
+      key: estado
+      value: '1'
+      disabled: false
+      description: ''
+    - type: file
+      key: imagen
+      src: []
+      disabled: true
+      description: 'Imagen opcional (marcar casilla y elegir archivo)'
+    - type: file
+      key: imagen_secundaria
+      src: []
+      disabled: true
+      description: 'Imagen opcional (marcar casilla y elegir archivo)'
+    - type: file
+      key: imagen_terciaria
+      src: []
+      disabled: true
+      description: 'Imagen opcional (marcar casilla y elegir archivo)'
+order: 4000

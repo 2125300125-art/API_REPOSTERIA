@@ -1,0 +1,23 @@
+$kind: http-request
+url: 'http://localhost:8000/api/login'
+method: POST
+headers:
+  - key: Accept
+    value: application/json
+    disabled: false
+    description: ""
+body:
+  type: formdata
+  content:
+    - type: text
+      key: usuario
+      value: 'cramirez'
+      disabled: false
+      description: 'Usuario o correo del administrador activo'
+    - type: text
+      key: contraseña
+      value: 'Admin12345'
+      disabled: false
+      description: 'Contraseña del administrador'
+order: 1000
+

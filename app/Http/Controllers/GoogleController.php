@@ -3,106 +3,86 @@
 namespace App\Http\Controllers;
 
 use App\Models\Administrador;
-use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Str;
 use Laravel\Socialite\Facades\Socialite;
 
 class GoogleController extends Controller
 {
-    /**
-     * Redirige al usuario a la página de autenticación de Google.
-     */
-    public function redirectToGoogle()
+    // Actualicé redirectToGoogle comentando el redirect directo del navegador para devolver en JSON la URL de autenticación con Google.
+    public function redirectToGoogle(Request $request)
     {
-        return Socialite::driver('google')->redirect();
+        // return Socialite::driver('google')->redirect();
+
+        try {
+            $url = Socialite::driver('google')->stateless()->redirect()->getTargetUrl();
+
+            return response()->json([
+                'success' => true,
+                'message' => 'URL de autenticación con Google generada correctamente.',
+                'data' => [
+                    'auth_url' => $url,
+                ],
+            ], 200);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Error al generar la redirección a Google: ' . $e->getMessage(),
+            ], 500);
+        }
     }
 
-    /**
-     * Recibe la información del usuario desde Google y gestiona el inicio de sesión.
-     */
+    // Actualicé handleGoogleCallback comentando las redirecciones a vistas para retornar el administrador autenticado y su token en JSON.
     public function handleGoogleCallback(Request $request)
     {
         try {
-            // Obtener el usuario autenticado por Google
-            $googleUser = Socialite::driver('google')->user();
-        } catch (\Exception $e) {
-            return redirect()->route('login')->withErrors([
-                'error' => 'No se pudo autenticar con Google: ' . $e->getMessage()
-            ]);
-        }
+            // $googleUser = Socialite::driver('google')->user();
+            $googleUser = Socialite::driver('google')->stateless()->user();
 
-        // 1. Sincronizar también con la tabla de usuarios generales (modelo User)
-        try {
-            User::updateOrCreate(
-                ['email' => $googleUser->getEmail()],
-                [
-                    'name'     => $googleUser->getName(),
-                    'password' => Hash::make(Str::random(24)),
-                ]
-            );
-        } catch (\Exception $e) {
-            // Si la tabla users no está lista, continuamos con administradores
-        }
+            $admin = Administrador::with('rol')
+                ->where('correo', $googleUser->getEmail())
+                ->first();
 
-        // 2. Buscar si ya existe un Administrador con este correo electrónico
-        $admin = Administrador::where('correo', $googleUser->getEmail())->first();
-
-        if ($admin) {
-            // Verificar si el administrador se encuentra activo
-            if (isset($admin->activo) && (int)$admin->activo === 0) {
-                return redirect()->route('login')->withErrors([
-                    'error' => 'Esta cuenta de administrador se encuentra desactivada.'
-                ]);
+            if (!$admin) {
+                // return redirect()->route('login')->withErrors([
+                //     'error' => 'El correo de Google no está registrado como administrador.'
+                // ]);
+                return response()->json([
+                    'success' => false,
+                    'message' => 'El correo de Google no está registrado como administrador.',
+                ], 404);
             }
 
-            // Actualizar imagen con la foto de perfil de Google
-            if ($googleUser->getAvatar()) {
-                $admin->imagen = $googleUser->getAvatar();
-                $admin->save();
+            if (!$admin->activo) {
+                // return redirect()->route('login')->withErrors([
+                //     'error' => 'Esta cuenta de administrador se encuentra desactivada.'
+                // ]);
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Esta cuenta de administrador se encuentra desactivada.',
+                ], 403);
             }
 
-            // Iniciar sesión con el guard 'admin' de tu proyecto
-            Auth::guard('admin')->login($admin);
-            $request->session()->regenerate();
+            // Auth::guard('admin')->login($admin);
+            // return redirect()->route('administradores.listar');
 
-            return redirect()->intended(route('inicio'));
-        }
+            $token = $admin->createToken('google-admin-token')->plainTextToken;
 
-        // 3. Si no existe como administrador, lo creamos automáticamente como nuevo Administrador activo
-        try {
-            $nombrePartes = explode(' ', $googleUser->getName(), 2);
-            $nombre = $nombrePartes[0] ?? $googleUser->getName();
-            $apellidos = $nombrePartes[1] ?? 'Google';
-            $usuario = explode('@', $googleUser->getEmail())[0];
-
-            // Asegurarse de que el usuario no esté duplicado
-            if (Administrador::where('usuario', $usuario)->exists()) {
-                $usuario .= rand(10, 99);
-            }
-
-            $nuevoAdmin = Administrador::create([
-                'nombre'     => $nombre,
-                'apellidos'  => $apellidos,
-                'correo'     => $googleUser->getEmail(),
-                'usuario'    => $usuario,
-                'contraseña' => Hash::make(Str::random(24)),
-                'imagen'     => $googleUser->getAvatar(),
-                'rol_id'     => 1,
-                'activo'     => 1,
-            ]);
-
-            Auth::guard('admin')->login($nuevoAdmin);
-            $request->session()->regenerate();
-
-            return redirect()->intended(route('inicio'));
-
+            return response()->json([
+                'success' => true,
+                'message' => 'Autenticación con Google exitosa.',
+                'token_type' => 'Bearer',
+                'access_token' => $token,
+                'data' => $admin,
+            ], 200);
         } catch (\Exception $e) {
-            return redirect()->route('login')->withErrors([
-                'error' => 'Error al registrar administrador desde Google: ' . $e->getMessage()
-            ]);
+            // return redirect()->route('login')->withErrors([
+            //     'error' => 'No se pudo iniciar sesión con Google.'
+            // ]);
+            return response()->json([
+                'success' => false,
+                'message' => 'No se pudo iniciar sesión con Google: ' . $e->getMessage(),
+            ], 500);
         }
     }
 }

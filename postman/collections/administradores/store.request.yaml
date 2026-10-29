@@ -1,0 +1,52 @@
+$kind: http-request
+url: 'http://localhost:8000/api/administradores'
+method: POST
+headers:
+  - key: Accept
+    value: application/json
+    disabled: false
+    description: ""
+body:
+  type: formdata
+  content:
+    - type: text
+      key: nombre
+      value: 'Carlos'
+      disabled: false
+      description: ''
+    - type: text
+      key: apellidos
+      value: 'Ramírez Torres'
+      disabled: false
+      description: ''
+    - type: text
+      key: correo
+      value: 'carlos.ramirez{{$randomInt}}@aguapotable.test'
+      disabled: false
+      description: ''
+    - type: text
+      key: usuario
+      value: 'cramirez{{$randomInt}}'
+      disabled: false
+      description: ''
+    - type: text
+      key: contraseña
+      value: 'Admin12345'
+      disabled: false
+      description: ''
+    - type: text
+      key: rol_id
+      value: '1'
+      disabled: false
+      description: ''
+    - type: text
+      key: activo
+      value: '1'
+      disabled: false
+      description: ''
+    - type: file
+      key: imagen
+      src: []
+      disabled: true
+      description: 'Imagen opcional (marcar casilla y elegir archivo)'
+order: 3000

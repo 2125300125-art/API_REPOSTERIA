@@ -1,7 +1,0 @@
-@extends('plantilla.layout')
-@section('titulo', 'Nuevo pedido')
-@section('contenido')
-<section class="mx-auto max-w-3xl space-y-5"><div><p class="text-sm font-semibold uppercase text-cyan-700">Ventas y pedidos</p><h1 class="mt-1 text-2xl font-bold">Nuevo pedido</h1></div><form method="POST" action="{{ route('pedidos.guardar') }}" class="grid gap-4 rounded-md border border-slate-200 bg-white p-6 sm:grid-cols-2">@csrf
-@foreach (['cliente', 'productos', 'metodo_pago', 'fecha', 'total', 'estado'] as $campo)@php($tipo = $campo === 'fecha' ? 'date' : (in_array($campo, ['total']) ? 'number' : 'text'))<label class="grid gap-1 text-sm font-medium text-slate-700">{{ ucfirst(str_replace('_', ' ', $campo)) }}<input name="{{ $campo }}" type="{{ $tipo }}" value="{{ old($campo) }}" @if($campo === 'total') step="0.01" min="0" @endif class="rounded-md border border-slate-300 px-3 py-2" required></label>@endforeach
-<div class="flex gap-3 sm:col-span-2"><button class="rounded-md bg-cyan-600 px-4 py-2 font-semibold text-white" type="submit">Registrar pedido</button><a class="rounded-md border border-slate-300 px-4 py-2" href="{{ route('pedidos.listar') }}">Cancelar</a></div></form></section>
-@endsection

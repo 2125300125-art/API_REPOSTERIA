@@ -1,0 +1,72 @@
+$kind: http-request
+url: 'http://localhost:8000/api/productos'
+method: POST
+headers:
+  - key: Accept
+    value: application/json
+    disabled: false
+    description: ""
+body:
+  type: formdata
+  content:
+    - type: text
+      key: nombre
+      value: 'Garrafón Agua Alcalina 20 L'
+      disabled: false
+      description: ''
+    - type: text
+      key: descripcion
+      value: 'Agua purificada alcalina pH 8.5 en garrafón de 20 litros'
+      disabled: false
+      description: ''
+    - type: text
+      key: categoria_id
+      value: '1'
+      disabled: false
+      description: ''
+    - type: text
+      key: presentacion_id
+      value: '1'
+      disabled: false
+      description: ''
+    - type: text
+      key: marca_id
+      value: '1'
+      disabled: false
+      description: ''
+    - type: text
+      key: precio
+      value: '52.00'
+      disabled: false
+      description: ''
+    - type: text
+      key: existencia
+      value: '80'
+      disabled: false
+      description: ''
+    - type: text
+      key: descuento
+      value: '0.00'
+      disabled: false
+      description: ''
+    - type: text
+      key: estado
+      value: '1'
+      disabled: false
+      description: ''
+    - type: file
+      key: imagen
+      src: []
+      disabled: true
+      description: 'Imagen opcional (marcar casilla y elegir archivo)'
+    - type: file
+      key: imagen_secundaria
+      src: []
+      disabled: true
+      description: 'Imagen opcional (marcar casilla y elegir archivo)'
+    - type: file
+      key: imagen_terciaria
+      src: []
+      disabled: true
+      description: 'Imagen opcional (marcar casilla y elegir archivo)'
+order: 3000

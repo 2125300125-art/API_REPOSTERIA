@@ -1,0 +1,9 @@
+$kind: http-request
+url: 'http://localhost:8000/api/entregas'
+method: GET
+headers:
+  - key: Accept
+    value: application/json
+    disabled: false
+    description: ""
+order: 1000

@@ -2,6 +2,7 @@
 
 namespace App\Exceptions;
 
+use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Throwable;
 
@@ -37,5 +38,14 @@ class Handler extends ExceptionHandler
         $this->reportable(function (Throwable $e) {
             //
         });
+    }
+
+    // Agregué esta respuesta en JSON 401 para que las rutas protegidas con Sanctum nunca intenten redirigir a una vista web.
+    protected function unauthenticated($request, AuthenticationException $exception)
+    {
+        return response()->json([
+            'success' => false,
+            'message' => 'No autenticado. Debes iniciar sesión y enviar un token Bearer válido.',
+        ], 401);
     }
 }

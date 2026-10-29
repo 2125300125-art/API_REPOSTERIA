@@ -1,0 +1,14 @@
+$kind: http-request
+url: 'http://localhost:8000/api/perfil'
+method: GET
+headers:
+  - key: Accept
+    value: application/json
+    disabled: false
+    description: ""
+  - key: Authorization
+    value: 'Bearer PEGA_AQUI_TU_TOKEN'
+    disabled: false
+    description: 'Token devuelto por POST /api/login'
+order: 2000
+

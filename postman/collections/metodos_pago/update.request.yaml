@@ -1,0 +1,32 @@
+$kind: http-request
+url: 'http://localhost:8000/api/metodos_pago/1'
+method: PUT
+headers:
+  - key: Accept
+    value: application/json
+    disabled: false
+    description: ""
+body:
+  type: formdata
+  content:
+    - type: text
+      key: nombre
+      value: 'Efectivo contra entrega'
+      disabled: false
+      description: ''
+    - type: text
+      key: descripcion
+      value: 'Pago en efectivo al repartidor en domicilio'
+      disabled: false
+      description: ''
+    - type: text
+      key: estado
+      value: '1'
+      disabled: false
+      description: ''
+    - type: file
+      key: imagen
+      src: []
+      disabled: true
+      description: 'Imagen opcional (marcar casilla y elegir archivo)'
+order: 4000

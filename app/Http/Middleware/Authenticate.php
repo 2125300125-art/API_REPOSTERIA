@@ -12,10 +12,13 @@ class Authenticate extends Middleware
      * @param  \Illuminate\Http\Request  $request
      * @return string|null
      */
+    // Comenté la redirección a la vista web login para que en la API REST retorne siempre respuesta JSON 401.
     protected function redirectTo($request)
     {
-        if (! $request->expectsJson()) {
-            return route('login');
-        }
+        // if (! $request->expectsJson()) {
+        //     return route('login');
+        // }
+
+        return null;
     }
 }

@@ -1,0 +1,47 @@
+$kind: http-request
+url: 'http://localhost:8000/api/clientes/1'
+method: PUT
+headers:
+  - key: Accept
+    value: application/json
+    disabled: false
+    description: ""
+body:
+  type: formdata
+  content:
+    - type: text
+      key: nombres
+      value: 'Ana Sofía'
+      disabled: false
+      description: ''
+    - type: text
+      key: apellidos
+      value: 'Ramírez Cruz'
+      disabled: false
+      description: ''
+    - type: text
+      key: correo
+      value: 'anasofia.cliente@clienteagua.test'
+      disabled: false
+      description: ''
+    - type: text
+      key: telefono
+      value: '2229876543'
+      disabled: false
+      description: ''
+    - type: text
+      key: contraseña
+      value: 'Cliente12345'
+      disabled: true
+      description: 'Opcional al actualizar'
+    - type: text
+      key: estado
+      value: '1'
+      disabled: false
+      description: ''
+    - type: file
+      key: imagen
+      src: []
+      disabled: true
+      description: 'Imagen opcional (marcar casilla y elegir archivo)'
+order: 4000

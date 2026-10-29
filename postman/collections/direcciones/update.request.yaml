@@ -1,0 +1,57 @@
+$kind: http-request
+url: 'http://localhost:8000/api/direcciones/1'
+method: PUT
+headers:
+  - key: Accept
+    value: application/json
+    disabled: false
+    description: ""
+body:
+  type: formdata
+  content:
+    - type: text
+      key: cliente_id
+      value: '1'
+      disabled: false
+      description: ''
+    - type: text
+      key: calle
+      value: 'Av. Reforma'
+      disabled: false
+      description: ''
+    - type: text
+      key: numero
+      value: '120'
+      disabled: false
+      description: ''
+    - type: text
+      key: colonia
+      value: 'Centro'
+      disabled: false
+      description: ''
+    - type: text
+      key: ciudad
+      value: 'Puebla'
+      disabled: false
+      description: ''
+    - type: text
+      key: codigo_postal
+      value: '72000'
+      disabled: false
+      description: ''
+    - type: text
+      key: referencia
+      value: 'Edificio de dos pisos color blanco'
+      disabled: false
+      description: ''
+    - type: text
+      key: estado
+      value: '1'
+      disabled: false
+      description: ''
+    - type: file
+      key: imagen
+      src: []
+      disabled: true
+      description: 'Imagen opcional (marcar casilla y elegir archivo)'
+order: 4000

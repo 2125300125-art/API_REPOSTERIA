@@ -1,0 +1,42 @@
+$kind: http-request
+url: 'http://localhost:8000/api/repartidores/1'
+method: PUT
+headers:
+  - key: Accept
+    value: application/json
+    disabled: false
+    description: ""
+body:
+  type: formdata
+  content:
+    - type: text
+      key: nombres
+      value: 'Carlos Alberto'
+      disabled: false
+      description: ''
+    - type: text
+      key: apellidos
+      value: 'Mendoza Soto'
+      disabled: false
+      description: ''
+    - type: text
+      key: telefono
+      value: '2224567899'
+      disabled: false
+      description: ''
+    - type: text
+      key: licencia
+      value: 'LIC-AGUA-1001'
+      disabled: false
+      description: ''
+    - type: text
+      key: estado
+      value: '1'
+      disabled: false
+      description: ''
+    - type: file
+      key: imagen
+      src: []
+      disabled: true
+      description: 'Imagen opcional (marcar casilla y elegir archivo)'
+order: 4000

@@ -18,6 +18,10 @@ class Cliente extends Model
         'estado'
     ];
 
+    protected $hidden = [
+        'contraseña',
+    ];
+
     public function direcciones()
     {
         return $this->hasMany(Direccion::class);
